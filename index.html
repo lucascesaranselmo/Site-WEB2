@@ -1,108 +1,176 @@
 <!DOCTYPE html>
-<html lang="Pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>G1950-Seu site de notícias!</title>
-    <link rel="stylesheet" href="css/style.CSS">
- </head>
-<body>
-    <nav>
-        <h1>Clique em um dos botões abaixo para ir até as matérias!</h1>
-        <a id="economia" href="#borda-economia">Matéria de <span class="verde"> Economia!</span></a>
-        <a id="Esporte" href="#borda-esporte">Matéria de <span class="laranja">Esporte!</span></a> 
-        <a id="entreterimento" href="#borda-entreterimento">Matéria de <span class="vermelho">Entreterimento!</span> </a>
-        <a id="noticia" href="#borda-Notícias">Notícia <span class="preto"> Chocante!</span> </a>
-        <a id="alien" href="#borda-alien">Matéria de <span class="azul"> Aliens!</span></a>
-    </nav>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sistema do Terceirão</title>
 
-    <div id="borda-economia">
-        <div id="Titulo-Economia">
-            <h1>Economia</h1>
+        <style>
+            /* Reset básico para evitar scrolls estranhos */
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background: black;
+                color: #00ff88;
+                font-family: 'Courier New', Courier, monospace;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                text-align: center;
+                overflow-x: hidden;
+            }
+
+            /* CAPA INTERATIVA RESPONSIVA */
+            #capaInterativa {
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: 100%;
+                background-color: black;
+                background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/56/Bsodwindows10.png'); 
+                background-size: cover;
+                background-position: center;
+                z-index: 2000;
+                cursor: pointer;
+                transition: opacity 1s ease;
+            }
+
+            /* CAIXA PRINCIPAL */
+            .caixa {
+                border: 2px solid #00ff88;
+                padding: 20px;
+                width: 90%;
+                max-width: 500px;
+                background: rgba(0, 0, 0, 0.9);
+                box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+            }
+
+            h2 { font-size: 1.5rem; margin-bottom: 15px; }
+            p { font-size: 1rem; margin: 10px 0; }
+
+            /* BOTÕES RESPONSIVOS */
+            .botoes-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            button {
+                background: black;
+                color: #00ff88;
+                border: 2px solid #00ff88;
+                padding: 15px;
+                font-size: 1rem;
+                cursor: pointer;
+                font-family: monospace;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+
+            button:hover {
+                background: #00ff88;
+                color: black;
+            }
+
+            /* JANELA DE VÍDEO (MODAL) */
+            #janelaVideo {
+                display: none;
+                position: fixed;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+                background: black;
+                border: 3px solid #00ff88;
+                padding: 15px;
+                z-index: 1001;
+                width: 95%;
+                max-width: 450px;
+                box-shadow: 0 0 30px #00ff88;
+            }
+
+            video {
+                width: 100%; /* O vídeo ocupa toda a largura da modal */
+                height: auto;
+                border: 1px solid #00ff88;
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: 100%;
+                background: rgba(0,0,0,0.85);
+                z-index: 1000;
+            }
+
+            /* Ajustes para telas maiores */
+            @media (min-width: 600px) {
+                .botoes-container {
+                    flex-direction: row;
+                    justify-content: center;
+                }
+                button { font-size: 0.9rem; }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div id="capaInterativa" onclick="removerCapa()"></div>
+
+        <div class="caixa">
+            <h2>⚠ SISTEMA DO TERCEIRÃO ⚠</h2>
+            <p>RESULTADO FINAL:<br><strong>Professor Jeferson (Jefinho)</strong></p>
+            <p>✔ Inteligente | ✔ Gente boa | ✔ Guenta nóis</p>
+            <hr style="border: 0; border-top: 1px solid #00ff88; margin: 20px 0;">
+            <h2>⭐ PADRINHO DO TERCEIRÃO ⭐</h2>
+            <p>Aceitar missão?</p>
+
+            <div class="botoes-container">
+                <button onclick="mostrarVideo()">SIM</button>
+                <button onclick="mostrarVideo()">CLARO</button>
+                <button onclick="mostrarVideo()">NÃO TEM ESCOLHA</button>
+            </div>
         </div>
-        <div>
-            <h2>Combustível adulterado: saiba como identificar gasolina fraudada!
-            </h2>
-            <img class="imagem" src="imagens/gasolina.jpg">
-            <p class="legenda">Imagem do site InfoEscola.</p>
-            <p class="Noticia">A Operação Naftalina, realizada pela Polícia Federal e pela Polícia Rodoviária Federal (PRF), nesta terça-feira (12), prendeu 14 pessoas e fechou oito postos de combustíveis da Grande Vitória.</p>
-            <p class="Noticia">O objetivo foi identificar e prender integrantes de uma organização criminosa responsável pela adulteração de combustíveis que são vendidos nesses postos.</p>
-            <p class="Noticia">Para fraudar o combustível, eram adicionados à gasolina nafta, álcool hidratado e corante. De acordo com o coordenador do Laboratório de Pesquisa e Análise de Petróleo da Universidade Federal do Espírito Santo (Ufes), Eustáquio de Castro, existem formas para que o consumidor verifique se o combustível que está na bomba obedece às normas de qualidade.</p>
-            <p class="negrito">Teste de proveta</p>
-            <p class="Noticia">Os postos de combustível são obrigados, de acordo com uma regulamentação da Agência Nacional do Petróleo (ANP), a realizarem testes para medir a quantidade de etanol anidro - ou seja, álcool sem água - presente na gasolina comum ou aditivada sempre que o consumidor exigir.</p>
-            <p class="Noticia">No teste, em uma proveta de 100 ml devem ser adicionados 50 ml de gasolina e 50ml de uma solução de água e sal de cozinha. Depois de misturado, o etanol que estava na gasolina se junta à água e, após um repouso de 10 minutos, os líquidos se separam, com a gasolina ficando na parte superior da proveta.</p>
-            <p class="Noticia">Assim, o líquido incolor, resultante da mistura de água, sal e etanol, deve preencher no máximo 63ml da proveta, com margem de erro de 1 ml. Caso a mistura ultrapasse esse volume, a gasolina não está conforme com as especificações da ANP.</p>
-            <a id="botao1" href="https://g1.globo.com/es/espirito-santo/noticia/2022/04/13/combustivel-adulterado-saiba-como-identificar-gasolina-fraudada.ghtml">Clique aqui para ver a matéria completa.</a>
+
+        <div id="fundoEscuro" class="overlay"></div>
+        
+        <div id="janelaVideo">
+            <h3>MISSÃO ACEITA! 🎉</h3>
+            <p style="font-size: 0.8rem; margin-bottom: 10px;">Aguarde o carregamento...</p>
+            <video controls id="meuVideo">
+                <source src="WhatsApp Video 2026-03-25 at 21.19.04.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos.
+            </video>
+            <br>
+            <button onclick="fecharVideo()" style="margin-top: 15px; width: 100%;">FECHAR</button>
         </div>
-    </div>
-    <div id="borda-esporte">
-        <div id="Titulo-Esporte">
-            <h1>Esporte</h1>
-        </div>
-        <div>
-            <h2>A magia, as dores e os mistérios de Ronaldinho Gaúcho, o homem mais feliz do mundo com a bola no pé
-            </h2>
-            <img class="imagem" src="imagens/ronaldinho.jpg">
-            <p class="legenda">Imagem de Wikpédia.</p>
-            <p class="Noticia">Documentário detalha auge no Barcelona até transferência para o Milan, num retrato mais fiel do gênio de personalidade enigmática relatada em família: "Fala menos das suas emocoes, expõe menos o que sente"</p>
-            <p class="Noticia">Ao lado do irmão Assis, Ronaldinho fica com os olhos marejados, engole seco e passa a língua ao redor da boca algumas vezes. Roberto (nome do irmão mais velho, empresário e protetor) conta de maneira poucas vezes vista como o pai João morreu depois de parada cardíaca na piscina de casa.</p>
-            <p class="Noticia">Assis, como ficou conhecido no futebol o canhoto que se profissionaliou aos 16 anos no Grêmio, relata que houve duas quedas de energia durante atendimento ao pai no hospital em Porto Alegre. Na segunda, João, um gremista fanático, não resistiu.</p>
-            <p class="negrito">- Quem sou eu para julgar os caminhos de Deus?</p>
-            <p class="Noticia">A frase é de Assis, mas a câmera não sai do rosto do irmão. Foca um Ronaldo angustiado. Com semblante de choro, antes ele respondeu aos documentaristas do "O homem mais feliz do mundo" - atração lançada pela Fifa+ nesta semana - que era muito novo e não entendeu muito bem na época sobre a morte do pai. Era pequeno, não quis ir no enterro.</p>
-            <p class="Noticia">- Quando estou com a bola, o mundo para - divaga Ronaldinho, cenas depois dos irmãos contarem como ele reagiu e mudou de comportamento no colégio e em casa depois da morte do pai.</p>
-            <p class="Noticia">Num retrato pouco visto do gênio que fez parte da torcida do Real Madrid o aplaudir dentro do Santiago Bernabeu, depois do segundo gol, nos 3 a 0 na temporada de 2005, Ronaldinho inicia e termina o documentário contando que tem saudade. Dos estádios cheios, dos amigos que se foram e, claro, do pai - a mãe ainda não havia falecido quando o documentário foi gravado, inclusive com outros depoimentos bem marcantes da dona Miguelina. Ela morreu em fevereiro do ano passado.</p>
-            <a id="botao2" href="https://ge.globo.com/futebol/noticia/2022/04/16/a-magia-as-dores-e-os-misterios-de-ronaldinho-gaucho-o-homem-mais-feliz-do-mundo-com-a-bola-no-pe.ghtml">Clique aqui para ver a matéria completa.</a>
-        </div>
-    </div>
-    <div id="borda-entreterimento">
-        <div id="Titulo-Entreterimento">
-            <h1>Entreterimento</h1>
-        </div>
-        <div>
-            <h2>Mudanças nas manhãs da Globo: veja quem entra e quem sai
-            </h2>
-            <img class="imagem-estranha" src="imagens/poey-2-.webp">
-            <p class="legenda-estranha">Imagem de gshow-Globo.</p>
-            <p class="Noticia">Prepara que vem novidade boa por aí! A partir do segundo semestre, um timaço renovado passará a comandar os programas matinais. Novos apresentadores e mudança no local de transmissão vão agitar os formatos do “Mais Você”, “Encontro” e “É de Casa”. O ”Estúdio i”, na GloboNews, também terá novidades.</p>
-            <p class="negrito-estranho">"Encontro"</p>
-            <img class="imagen-estranha" src="imagens/poey-4-.webp">
-            <p class="Noticia">Depois de 10 anos à frente do “Encontro”, Fátima Bernardes deixará o programa em junho para assumir em outubro a apresentação do “The Voice Brasil”. Patrícia Poeta assumirá o comando do matutino da Globo na companhia de Manoel Soares, diretamente de São Paulo</p>
-            <p class="negrito">“É De Casa”</p>
-            <img class="imagin-estranha" src="imagens/poey-5-.webp">
-            <p class="Noticia">Maria Beltrão virá da GloboNews para comandar o “É De Casa”, ao lado de Thiago Oliveira, Rita Batista e Talitha Morete.</p>
-            <p class="Noticia">No time de apresentadores desde a estreia do “É de Casa”, Andre Marques deixará o matinal, assim como Ana Furtado, que conversa com a Globo sobre novos projetos para suas diversas plataformas.</p>
-            <a id="botao3" href="https://gshow.globo.com/tudo-mais/tv-e-famosos/noticia/mudancas-nas-manhas-da-globo-veja-quem-entra-e-quem-sai.ghtml">Clique aqui para ver a matéria completa.</a>
-        </div>
-    </div>
-    <div id="borda-Notícias">
-        <div id="Titulo-Notícias">
-            <h1>Notícias</h1>
-        </div>
-        <div>
-            <h2>Blogueira Aline Borel é encontrada morta com marcas de tiros em Araruama, RJ
-            </h2>
-            <img class="imagem" src="imagens/aline-borel.webp">
-            <p class="legenda">Imagem de G1-Globo.</p>
-            <p class="Noticia">A cantora e blogueira Aline Borel, de 27 anos, foi encontrada morta com marcas de tiros nesta quinta-feira (21) em Araruama, na Região dos Lagos do Rio, segundo a Polícia Civil.</p>
-            <p class="Noticia">De acordo com a Polícia Militar, o corpo foi localizado na Rua Dr. Leal, na Praia do Dentinho e a área foi isolada. Também segundo a PM, uma perícia inicial encontrou duas marcas de tiros no corpo de Aline.</p>
-            <p class="Noticia">O caso está sendo investigado pela Polícia Civil na 118ª DP. A polícia ainda não divulgou informações sobre a linha de investigação</p>
-            <p class="Noticia">Aline ficou conhecida nas redes depois de publicar vídeos cantando vídeos com músicas autorais e também músicas famosas, como da dupla Sandy e Júnior.</p>
-            <p class="Noticia">Entre os maiores sucessos de Aline estão “É Cansativa a Vida do Crente”, um funk com letra gospel. Ela também ficou conhecida como um ícone da internet por conta de memes a partir dos vídeos que publicava.</p>
-            <p class="Noticia">No Instagram, o perfil de Aline é seguido por famosos como Linn da Quebrada, Maisa Silva e Grag Queen.</p>
-            <a id="botao4" href="https://g1.globo.com/rj/regiao-dos-lagos/noticia/2022/04/22/influenciadora-digital-aline-borel-e-encontrada-morta-em-araruama-no-rj.ghtml">Clique aqui para ver a matéria completa.</a>
-        </div>
-    </div>
-    <div id="borda-alien">
-        <div id="Titulo-alien">
-            <h1>Espaço</h1>
-        </div>
-        <div>
-            <h2>“Molécula achada em Vênus pode indicar presença de vida”, diz astrofísica 
-            </h2>
-            <img class="imagem-estranha" src="imagens/mulher.jpg">
-            <p class="legenda-estranha">Imagem do google.</p>
-            <p class="Noticia">Nós, humanos, estamos sozinhos no universo? Esse questionamento de cunho científico e filosófico sempre me fascinou. A curiosidade me fez seguir a carreira de astrofísica e me tornei uma caçadora de moléculas que indiquem a presença de vida em outros planetas. Há uma década, decidi derramar atenção sobre um composto específico, a fosfina. Aqui na Terra, trata-se de um gás incolor, malcheiroso e exremamente tóxico, que resulta da decomposição de matéria orgânica. É, portanto, um marcador importante de vida, que se manifestaria na forma de bactérias. Descobrir que a substância estava lá, na atmosfera de Vênus, um planeta vizinho, me deixou em estado de choque. A ciência é assim: você pode passar uma existência cavucando um ponto e de lá não sair nada. Neste tempo em que me dediquei à hipótese de vida em Vênus, o assunto era visto com desdém pela comunidade acadêmica. Dei palestras e escrevi artigos sobre o tema, mas não despertavam interesse. Ganhei até um apelido: Doutora Fosfina. Era um trabalho árduo e solitário cujo sucesso, para ser sincera, achava improvável.</p>
-            <a id="botao5" href="https://veja.abril.com.br/ciencia/molecula-achada-em-venus-pode-indicar-presenca-de-vida-diz-astrofisica/">Clique aqui para ver a matéria completa.</a>
-        </div>
-    </div>
-</body>
+
+        <script>
+            function removerCapa() {
+                const capa = document.getElementById('capaInterativa');
+                capa.style.opacity = '0';
+                setTimeout(() => {
+                    capa.style.display = 'none';
+                }, 1000);
+            }
+
+            function mostrarVideo() {
+                alert("Parabéns Professor Jefinho! Você agora é oficialmente o padrinho do terceirão! 🎉");
+                document.getElementById('janelaVideo').style.display = 'block';
+                document.getElementById('fundoEscuro').style.display = 'block';
+                document.getElementById('meuVideo').play();
+            }
+
+            function fecharVideo() {
+                document.getElementById('janelaVideo').style.display = 'none';
+                document.getElementById('fundoEscuro').style.display = 'none';
+                document.getElementById('meuVideo').pause();
+            }
+        </script>
+    </body>
 </html>
